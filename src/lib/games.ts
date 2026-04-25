@@ -8,6 +8,8 @@ export type Game = {
   category: string;
   rating: number;
   description: string;
+  sponsored?: boolean;
+  sponsorName?: string;
 };
 
 type GameInput = {
@@ -15,6 +17,14 @@ type GameInput = {
   title: string;
   category: string;
   thumbnail?: string;
+};
+
+// Mark a few games as sponsored. Edit this list to control which tiles
+// display a "Sponsored" badge / glow on the home grid.
+const SPONSORED: Record<string, string> = {
+  "nugget-royale": "PlayVerse Picks",
+  "openfront-io": "Featured Sponsor",
+  "five-nights-at-freddys-2": "Promoted",
 };
 
 // Real static thumbnails from hahagames CDN where provided.
@@ -187,6 +197,7 @@ const fallbackThumbnail = (id: string) =>
 
 export const GAMES: Game[] = RAW_GAMES.map((g) => {
   const thumb = g.thumbnail ?? fallbackThumbnail(g.id);
+  const sponsorName = SPONSORED[g.id];
   return {
     id: g.id,
     title: g.title,
@@ -197,8 +208,12 @@ export const GAMES: Game[] = RAW_GAMES.map((g) => {
     category: g.category,
     rating: ratingFor(g.id),
     description: `Play ${g.title} free online — instant browser play, no downloads required.`,
+    sponsored: Boolean(sponsorName),
+    sponsorName,
   };
 });
+
+export const SPONSORED_GAMES = GAMES.filter((g) => g.sponsored);
 
 export const games = GAMES;
 

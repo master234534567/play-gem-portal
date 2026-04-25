@@ -5,6 +5,7 @@ import { ArrowLeft, Maximize2, Minimize2, Star, Shuffle, Play } from "lucide-rea
 import { Header } from "@/components/Header";
 import { GameTile } from "@/components/GameTile";
 import { IframeSkeleton } from "@/components/GameSkeleton";
+import { AdSlot } from "@/components/AdSlot";
 import { GAMES, getGameBySlug, getRandomGame, getRelatedGames } from "@/lib/games";
 
 export const Route = createFileRoute("/play/$slug")({
@@ -145,6 +146,11 @@ function PlayPage() {
                 </button>
               </div>
               <p className="mt-3 text-sm md:text-base text-foreground/80 leading-relaxed">{game.description}</p>
+            </div>
+
+            {/* Ad below the player */}
+            <div className="mt-5">
+              <AdSlot size="leaderboard" slotId={`play-${game.id}`} />
             </div>
           </div>
 

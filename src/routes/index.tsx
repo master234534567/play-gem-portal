@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/Header";
 import { CategoryBar } from "@/components/CategoryBar";
 import { GameTile } from "@/components/GameTile";
-import { GAMES } from "@/lib/games";
+import { AdSlot } from "@/components/AdSlot";
+import { GAMES, SPONSORED_GAMES } from "@/lib/games";
 import { Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -64,6 +65,27 @@ function Home() {
           </motion.section>
         )}
 
+        {/* Top leaderboard ad */}
+        <div className="my-4">
+          <AdSlot size="leaderboard" slotId="home-top" />
+        </div>
+
+        {/* Sponsored spotlight strip */}
+        {!query && category === "All" && SPONSORED_GAMES.length > 0 && (
+          <section className="mb-6">
+            <div className="mb-3 flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-accent" />
+              <h2 className="text-lg font-bold">Sponsored spotlight</h2>
+              <span className="text-xs text-muted-foreground">Promoted picks</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+              {SPONSORED_GAMES.map((g, i) => (
+                <GameTile key={`sp-${g.id}`} game={g} index={i} />
+              ))}
+            </div>
+          </section>
+        )}
+
         <div className="mt-2 mb-4 flex items-center justify-between">
           <h2 className="text-lg font-bold">
             {category === "All" ? "All games" : category} <span className="text-muted-foreground font-normal">· {filtered.length}</span>
@@ -93,6 +115,11 @@ function Home() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Mid-page ad */}
+        <div className="mt-10">
+          <AdSlot size="billboard" slotId="home-mid" />
+        </div>
       </main>
     </div>
   );

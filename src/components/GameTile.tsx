@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star, Play } from "lucide-react";
+import { Star, Play, Sparkles } from "lucide-react";
 import type { Game } from "@/lib/games";
 
 type Props = { game: Game; index?: number };
@@ -17,7 +17,11 @@ export function GameTile({ game, index = 0 }: Props) {
       <Link
         to="/play/$slug"
         params={{ slug: game.slug }}
-        className="block overflow-hidden rounded-2xl bg-surface shadow-tile transition-shadow duration-300 group-hover:shadow-tile-hover ring-1 ring-border"
+        className={`block overflow-hidden rounded-2xl bg-surface shadow-tile transition-shadow duration-300 group-hover:shadow-tile-hover ring-1 ${
+          game.sponsored
+            ? "ring-2 ring-accent/60 shadow-glow"
+            : "ring-border"
+        }`}
       >
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
@@ -28,8 +32,15 @@ export function GameTile({ game, index = 0 }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-90" />
 
-          <div className="absolute top-2 left-2 rounded-full bg-background/70 backdrop-blur px-2 py-0.5 text-[10px] font-semibold text-foreground/90 ring-1 ring-border">
-            {game.category}
+          <div className="absolute top-2 left-2 flex items-center gap-1.5">
+            <div className="rounded-full bg-background/70 backdrop-blur px-2 py-0.5 text-[10px] font-semibold text-foreground/90 ring-1 ring-border">
+              {game.category}
+            </div>
+            {game.sponsored && (
+              <div className="inline-flex items-center gap-1 rounded-full gradient-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground shadow-glow">
+                <Sparkles className="h-2.5 w-2.5" /> Sponsored
+              </div>
+            )}
           </div>
           <div className="absolute top-2 right-2 flex items-center gap-1 rounded-full bg-background/70 backdrop-blur px-2 py-0.5 text-[10px] font-semibold text-accent ring-1 ring-border">
             <Star className="h-3 w-3 fill-current" /> {game.rating}
@@ -43,6 +54,9 @@ export function GameTile({ game, index = 0 }: Props) {
         </div>
         <div className="px-3 py-2.5">
           <h3 className="truncate text-sm font-semibold text-foreground">{game.title}</h3>
+          {game.sponsored && game.sponsorName && (
+            <p className="truncate text-[10px] text-accent/90 font-medium">{game.sponsorName}</p>
+          )}
         </div>
       </Link>
     </motion.div>
