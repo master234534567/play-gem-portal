@@ -54,6 +54,9 @@ export function GameTile({ game, index = 0 }: Props) {
         </div>
         <div className="px-3 py-2.5">
           <h3 className="truncate text-sm font-semibold text-foreground">{game.title}</h3>
+          {game.sponsored && game.sponsorName && (
+            <p className="truncate text-[10px] text-accent/90 font-medium">{game.sponsorName}</p>
+          )}
         </div>
       </Link>
     </motion.div>
