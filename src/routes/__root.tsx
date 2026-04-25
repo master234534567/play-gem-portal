@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { name: "description", content: "Play hundreds of free browser games instantly. No download required." },
       { name: "author", content: "PlayVerse" },
       { property: "og:title", content: "PlayVerse — Free Online Games" },
-      { property: "og:description", content: "Play hundreds of free browser games instantly." },
+      { property: "og:description", content: "Play hundreds of free browser games instantly. No download required." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "PlayVerse — Free Online Games" },
+      { name: "twitter:description", content: "Play hundreds of free browser games instantly. No download required." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/014a6bc1-c2a3-4c73-b5e6-941d104b6e66/id-preview-c40fc993--6fa40400-ca54-4476-9807-01b2ec054618.lovable.app-1777138189514.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/014a6bc1-c2a3-4c73-b5e6-941d104b6e66/id-preview-c40fc993--6fa40400-ca54-4476-9807-01b2ec054618.lovable.app-1777138189514.png" },
     ],
     links: [
       {
