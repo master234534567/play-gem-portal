@@ -137,6 +137,8 @@ const RAW_GAMES: GameInput[] = [
     id: "stickman-kombat-2d",
     title: "Stickman Kombat 2D",
     category: "Action",
+    thumbnail:
+      "https://static.hahagames.com/media/1164086b-632b-4bfa-af10-1a0c96555ee6/6695258f-875c-4972-a435-e29a798a522e_320x195.webp",
   },
   {
     id: "steal-a-brainrot-original-3d",
@@ -183,6 +185,39 @@ const RAW_GAMES: GameInput[] = [
     thumbnail:
       "https://static.hahagames.com/media/4d584972-fb13-4b17-b34b-eb0700f2fb8e/beeed97c-b991-4bcd-b783-acdd52c179fd_320x195.webp",
   },
+
+  // --- Sports ---
+  { id: "retro-bowl", title: "Retro Bowl", category: "Sports" },
+  { id: "soccer-skills-world-cup", title: "Soccer Skills World Cup", category: "Sports" },
+
+  // --- Simulator ---
+  { id: "bitlife", title: "BitLife", category: "Simulator" },
+
+  // --- Arcade ---
+  { id: "geometry-dash", title: "Geometry Dash", category: "Arcade" },
+  { id: "slope", title: "Slope", category: "Arcade" },
+  { id: "tomb-of-the-mask", title: "Tomb of the Mask", category: "Arcade" },
+  { id: "tunnel-rush", title: "Tunnel Rush", category: "Arcade" },
+
+  // --- More Action ---
+  { id: "temple-run-2", title: "Temple Run 2", category: "Action" },
+  { id: "subway-surfers", title: "Subway Surfers", category: "Action" },
+  { id: "paper-io-2", title: "Paper.io 2", category: "Action" },
+  { id: "smash-karts", title: "Smash Karts", category: "Action" },
+  { id: "stickman-hook", title: "Stickman Hook", category: "Action" },
+
+  // --- More Racing ---
+  { id: "moto-x3m", title: "Moto X3M", category: "Racing" },
+  { id: "drive-mad", title: "Drive Mad", category: "Racing" },
+
+  // --- More Casual ---
+  { id: "eggy-car", title: "Eggy Car", category: "Casual" },
+  { id: "monkey-mart", title: "Monkey Mart", category: "Casual" },
+  { id: "crossy-road", title: "Crossy Road", category: "Casual" },
+
+  // --- More Puzzle ---
+  { id: "block-blast", title: "Block Blast", category: "Puzzle" },
+  { id: "water-color-sort", title: "Water Color Sort", category: "Puzzle" },
 ];
 
 // Stable pseudo-random rating in [4.2, 4.9] derived from the id
