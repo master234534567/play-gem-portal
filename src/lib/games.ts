@@ -137,6 +137,8 @@ const RAW_GAMES: GameInput[] = [
     id: "stickman-kombat-2d",
     title: "Stickman Kombat 2D",
     category: "Action",
+    thumbnail:
+      "https://static.hahagames.com/media/1164086b-632b-4bfa-af10-1a0c96555ee6/6695258f-875c-4972-a435-e29a798a522e_320x195.webp",
   },
   {
     id: "steal-a-brainrot-original-3d",
