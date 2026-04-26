@@ -2,19 +2,27 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Header } from "@/components/Header";
-import { CategoryBar } from "@/components/CategoryBar";
+import { SideNav } from "@/components/SideNav";
+import { HeroBento } from "@/components/HeroBento";
+import { GameRow } from "@/components/GameRow";
 import { GameTile } from "@/components/GameTile";
 import { AdSlot } from "@/components/AdSlot";
-import { GAMES, SPONSORED_GAMES } from "@/lib/games";
-import { Sparkles } from "lucide-react";
+import { GAMES, getGameBySlug } from "@/lib/games";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "PlayVerse — Free Online Games" },
-      { name: "description", content: "Play hundreds of free online games instantly. Action, puzzle, racing, multiplayer and more — no download required." },
+      {
+        name: "description",
+        content:
+          "Play hundreds of free online games instantly. Action, puzzle, racing, multiplayer and more — no download required.",
+      },
       { property: "og:title", content: "PlayVerse — Free Online Games" },
-      { property: "og:description", content: "Play hundreds of free online games instantly in your browser." },
+      {
+        property: "og:description",
+        content: "Play hundreds of free online games instantly in your browser.",
+      },
     ],
   }),
   component: Home,
@@ -22,105 +30,135 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string>("All");
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return GAMES.filter((g) => {
-      const matchCat = category === "All" || g.category === category;
-      const matchQ = !q || g.title.toLowerCase().includes(q) || g.category.toLowerCase().includes(q);
-      return matchCat && matchQ;
-    });
-  }, [query, category]);
+    if (!q) return [];
+    return GAMES.filter(
+      (g) =>
+        g.title.toLowerCase().includes(q) ||
+        g.category.toLowerCase().includes(q),
+    );
+  }, [query]);
 
-  const featured = GAMES[0];
+  // Hero bento composition — fall back gracefully if a slug is missing.
+  const hot =
+    getGameBySlug("stickman-kombat-2d") ??
+    GAMES.find((g) => g.category === "Action") ??
+    GAMES[0];
+  const stackPool = GAMES.filter((g) => g.id !== hot.id);
+  const stack: [typeof GAMES[number], typeof GAMES[number]] = [
+    stackPool[0],
+    stackPool[1],
+  ];
+  const wide =
+    getGameBySlug("my-town-home-family-playhouse") ??
+    GAMES.find((g) => g.category === "Casual" && g.id !== hot.id) ??
+    stackPool[2];
+
+  // Category groupings
+  const featured = GAMES.filter((g) => g.category === "Featured");
+  const action = GAMES.filter((g) => g.category === "Action");
+  const racing = GAMES.filter((g) => g.category === "Racing");
+  const io = GAMES.filter((g) => g.category === "IO");
+  const horror = GAMES.filter((g) => g.category === "Horror");
+  const casual = GAMES.filter((g) => g.category === "Casual");
+
+  const allCategories = [
+    { key: "Featured", games: featured },
+    { key: "Action", games: action },
+    { key: "Racing", games: racing },
+    { key: "IO", games: io },
+    { key: "Horror", games: horror },
+    { key: "Casual", games: casual },
+  ].filter((c) => c.games.length > 0);
 
   return (
-    <div className="min-h-screen">
-      <Header query={query} onQueryChange={setQuery} />
-      <CategoryBar active={category} onChange={setCategory} />
+    <div className="min-h-screen flex">
+      <SideNav />
+      <div className="flex-1 min-w-0">
+        <Header query={query} onQueryChange={setQuery} />
 
-      <main className="mx-auto max-w-[1600px] px-4 md:px-6 pb-20">
-        {/* Hero */}
-        {!query && category === "All" && (
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="relative my-6 overflow-hidden rounded-3xl ring-1 ring-border"
-          >
-            <img src={featured.thumbnail_url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-40" />
-            <div className="absolute inset-0 gradient-hero opacity-70" />
-            <div className="relative z-10 flex flex-col gap-3 p-8 md:p-12">
-              <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-background/40 backdrop-blur px-3 py-1 text-xs font-semibold ring-1 ring-white/10">
-                <Sparkles className="h-3.5 w-3.5 text-accent" /> Featured today
-              </span>
-              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight max-w-2xl">
-                Your portal to <span className="text-accent">instant play.</span>
-              </h1>
-              <p className="max-w-lg text-sm md:text-base text-foreground/80">
-                Hundreds of free, browser-based games — no downloads, no accounts, just press play.
-              </p>
-            </div>
-          </motion.section>
-        )}
-
-        {/* Top leaderboard ad */}
-        <div className="my-4">
-          <AdSlot size="leaderboard" slotId="home-top" />
-        </div>
-
-        {/* Sponsored spotlight strip */}
-        {!query && category === "All" && SPONSORED_GAMES.length > 0 && (
-          <section className="mb-6">
-            <div className="mb-3 flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-accent" />
-              <h2 className="text-lg font-bold">Sponsored spotlight</h2>
-              <span className="text-xs text-muted-foreground">Promoted picks</span>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
-              {SPONSORED_GAMES.map((g, i) => (
-                <GameTile key={`sp-${g.id}`} game={g} index={i} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        <div className="mt-2 mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-bold">
-            {category === "All" ? "All games" : category} <span className="text-muted-foreground font-normal">· {filtered.length}</span>
-          </h2>
-        </div>
-
-        <AnimatePresence mode="popLayout">
-          {filtered.length === 0 ? (
-            <motion.div
-              key="empty"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="rounded-2xl ring-1 ring-border bg-surface/40 p-12 text-center"
-            >
-              <p className="text-muted-foreground">No games match your search.</p>
-            </motion.div>
+        <main className="mx-auto max-w-[1600px] px-4 md:px-6 pb-20 pt-4 md:pt-6 space-y-10">
+          {query ? (
+            <SearchResults games={filtered} query={query} />
           ) : (
-            <motion.div
-              key="grid"
-              layout
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4"
-            >
-              {filtered.map((g, i) => (
-                <GameTile key={g.id} game={g} index={i} />
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <>
+              <HeroBento hot={hot} stack={stack} wide={wide} />
 
-        {/* Mid-page ad */}
-        <div className="mt-10">
-          <AdSlot size="billboard" slotId="home-mid" />
-        </div>
-      </main>
+              <div>
+                <AdSlot size="leaderboard" slotId="home-top" />
+              </div>
+
+              <GameRow
+                id="new-featured"
+                title="New & Featured Games"
+                games={featured.length > 0 ? featured : GAMES.slice(0, 12)}
+                accent
+              />
+
+              <GameRow id="action" title="Action Games" games={action} accent />
+
+              <div>
+                <AdSlot size="billboard" slotId="home-mid" />
+              </div>
+
+              <div id="categories" className="space-y-10">
+                {allCategories
+                  .filter((c) => c.key !== "Featured" && c.key !== "Action")
+                  .map((c) => (
+                    <GameRow
+                      key={c.key}
+                      title={`${c.key} Games`}
+                      games={c.games}
+                      accent
+                    />
+                  ))}
+              </div>
+            </>
+          )}
+        </main>
+      </div>
     </div>
+  );
+}
+
+function SearchResults({
+  games,
+  query,
+}: {
+  games: typeof GAMES;
+  query: string;
+}) {
+  return (
+    <section>
+      <h2 className="text-lg font-bold mb-4">
+        Results for "<span className="text-primary">{query}</span>"{" "}
+        <span className="text-muted-foreground font-normal">· {games.length}</span>
+      </h2>
+      <AnimatePresence mode="popLayout">
+        {games.length === 0 ? (
+          <motion.div
+            key="empty"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="rounded-2xl ring-1 ring-border bg-surface/40 p-12 text-center"
+          >
+            <p className="text-muted-foreground">No games match your search.</p>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="grid"
+            layout
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4"
+          >
+            {games.map((g, i) => (
+              <GameTile key={g.id} game={g} index={i} />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }
