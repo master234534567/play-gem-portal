@@ -10,6 +10,7 @@ export type Game = {
   description: string;
   sponsored?: boolean;
   sponsorName?: string;
+  comingSoon?: boolean;
 };
 
 type GameInput = {
@@ -17,6 +18,7 @@ type GameInput = {
   title: string;
   category: string;
   thumbnail: string;
+  comingSoon?: boolean;
 };
 
 // Mark a few games as sponsored. Edit this list to control which tiles
