@@ -7,6 +7,7 @@ import { HeroBento } from "@/components/HeroBento";
 import { GameRow } from "@/components/GameRow";
 import { GameTile } from "@/components/GameTile";
 import { AdSlot } from "@/components/AdSlot";
+import { InfiniteGameGrid } from "@/components/InfiniteGameGrid";
 import { GAMES, getGameBySlug } from "@/lib/games";
 
 export const Route = createFileRoute("/")({
