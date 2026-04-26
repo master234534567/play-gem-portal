@@ -175,6 +175,60 @@ const RAW_GAMES: GameInput[] = [
     thumbnail:
       "https://static.hahagames.com/media/4d584972-fb13-4b17-b34b-eb0700f2fb8e/beeed97c-b991-4bcd-b783-acdd52c179fd_320x195.webp",
   },
+
+  // ============================================================
+  // 2026 fictional trending titles — playable demos coming soon.
+  // Thumbnails use Unsplash stock photos for a clean placeholder UI.
+  // ============================================================
+
+  // --- Action (8) ---
+  { id: "neon-nexus-racer", title: "Neon Nexus Racer", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "shadow-strike-io", title: "Shadow Strike.io", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "voxel-vandals", title: "Voxel Vandals", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "hyper-dash-arena", title: "Hyper Dash Arena", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "ragdoll-rampage-3d", title: "Ragdoll Rampage 3D", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1556438064-2d7646166914?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "chrono-blade-saga", title: "Chrono Blade Saga", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1531259683007-016a7b628fc3?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "glitch-gunner", title: "Glitch Gunner", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "stickfight-quantum", title: "Stickfight Quantum", category: "Action", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=320&h=195" },
+
+  // --- Puzzle (8) ---
+  { id: "prism-paradox", title: "Prism Paradox", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "cube-cascade", title: "Cube Cascade", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "logic-loop-2048", title: "Logic Loop 2048", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "tile-tactics-pro", title: "Tile Tactics Pro", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "merge-mystery-mansion", title: "Merge Mystery Mansion", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1604871000636-074fa5117945?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "circuit-breaker-io", title: "Circuit Breaker.io", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "labyrinth-of-light", title: "Labyrinth of Light", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "atomic-sort", title: "Atomic Sort", category: "Puzzle", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?auto=format&fit=crop&q=80&w=320&h=195" },
+
+  // --- Sports (8) ---
+  { id: "gravity-goal-keeper", title: "Gravity Goalkeeper", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "stadium-storm-2026", title: "Stadium Storm 2026", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "tap-trick-skater", title: "Tap Trick Skater", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1547447134-cd3f5c716030?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "rocket-rally-soccer", title: "Rocket Rally Soccer", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "drift-dunk-arena", title: "Drift Dunk Arena", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1505666287802-931582b5868f?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "ultra-archery-pro", title: "Ultra Archery Pro", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1486218119243-13883505764c?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "neon-bowling-blitz", title: "Neon Bowling Blitz", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "skybox-surfers", title: "Skybox Surfers", category: "Sports", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&q=80&w=320&h=195" },
+
+  // --- Horror (7) ---
+  { id: "whispers-of-the-vault", title: "Whispers of the Vault", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "midnight-motel", title: "Midnight Motel", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "the-static-room", title: "The Static Room", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "hollow-signal", title: "Hollow Signal", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1505635552518-3448ff116af3?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "asylum-exit-9", title: "Asylum Exit 9", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "ghost-server-io", title: "Ghost Server.io", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "lighthouse-keeper-7", title: "Lighthouse Keeper 7", category: "Horror", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1502209524164-acea936639a2?auto=format&fit=crop&q=80&w=320&h=195" },
+
+  // --- Simulator (8) ---
+  { id: "ramen-empire-tycoon", title: "Ramen Empire Tycoon", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "rocket-builder-3d", title: "Rocket Builder 3D", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1517976487492-5750f3195933?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "drone-delivery-co", title: "Drone Delivery Co.", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "barista-rush-2026", title: "Barista Rush 2026", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "junkyard-mech-builder", title: "Junkyard Mech Builder", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "indie-studio-tycoon", title: "Indie Studio Tycoon", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "deep-sea-salvage-sim", title: "Deep Sea Salvage Sim", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&q=80&w=320&h=195" },
+  { id: "city-cleanup-crew", title: "City Cleanup Crew", category: "Simulator", comingSoon: true, thumbnail: "https://images.unsplash.com/photo-1573108037329-37aa11c923fc?auto=format&fit=crop&q=80&w=320&h=195" },
 ];
 
 // Stable pseudo-random rating in [4.2, 4.9] derived from the id
@@ -198,6 +252,7 @@ export const GAMES: Game[] = RAW_GAMES.map((g) => {
     description: `Play ${g.title} free online — instant browser play, no downloads required.`,
     sponsored: Boolean(sponsorName),
     sponsorName,
+    comingSoon: g.comingSoon,
   };
 });
 
