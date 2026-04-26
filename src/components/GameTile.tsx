@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star, Play, Sparkles } from "lucide-react";
+import { Star, Play, Sparkles, Clock } from "lucide-react";
 import type { Game } from "@/lib/games";
 
 type Props = { game: Game; index?: number };
