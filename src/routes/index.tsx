@@ -64,10 +64,16 @@ function Home() {
   const io = GAMES.filter((g) => g.category === "IO");
   const horror = GAMES.filter((g) => g.category === "Horror");
   const casual = GAMES.filter((g) => g.category === "Casual");
+  const puzzle = GAMES.filter((g) => g.category === "Puzzle");
+  const sports = GAMES.filter((g) => g.category === "Sports");
+  const simulator = GAMES.filter((g) => g.category === "Simulator");
 
   const allCategories = [
     { key: "Featured", games: featured },
     { key: "Action", games: action },
+    { key: "Puzzle", games: puzzle },
+    { key: "Sports", games: sports },
+    { key: "Simulator", games: simulator },
     { key: "Racing", games: racing },
     { key: "IO", games: io },
     { key: "Horror", games: horror },
@@ -116,6 +122,18 @@ function Home() {
                     />
                   ))}
               </div>
+
+              {/* All games — infinite scroll */}
+              <section id="all-games">
+                <div className="mb-4 flex items-center gap-2">
+                  <span className="h-6 w-1 rounded-full" style={{ background: "var(--gradient-primary)" }} />
+                  <h2 className="text-xl md:text-2xl font-extrabold tracking-tight">
+                    Browse all games
+                  </h2>
+                  <span className="text-xs text-muted-foreground">· {GAMES.length}</span>
+                </div>
+                <InfiniteGameGrid games={GAMES} initialCount={20} step={12} />
+              </section>
             </>
           )}
         </main>
