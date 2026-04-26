@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Star, Play, Sparkles } from "lucide-react";
+import { Star, Play, Sparkles, Clock } from "lucide-react";
 import type { Game } from "@/lib/games";
 
 type Props = { game: Game; index?: number };
@@ -46,6 +46,11 @@ export function GameTile({ game, index = 0 }: Props) {
             {game.sponsored && (
               <div className="inline-flex items-center gap-1 rounded-full gradient-primary px-2 py-0.5 text-[10px] font-bold text-primary-foreground shadow-glow">
                 <Sparkles className="h-2.5 w-2.5" /> Sponsored
+              </div>
+            )}
+            {game.comingSoon && (
+              <div className="inline-flex items-center gap-1 rounded-full bg-accent/85 backdrop-blur px-2 py-0.5 text-[10px] font-bold text-accent-foreground ring-1 ring-accent/40">
+                <Clock className="h-2.5 w-2.5" /> Soon
               </div>
             )}
           </div>
