@@ -28,6 +28,13 @@ export function GameTile({ game, index = 0 }: Props) {
             src={game.thumbnail_url}
             alt={game.title}
             loading="lazy"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              const img = e.currentTarget;
+              if (img.dataset.fallback) return;
+              img.dataset.fallback = "1";
+              img.src = `https://placehold.co/320x195/1a1a1a/cccccc?text=${encodeURIComponent(game.title)}`;
+            }}
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent opacity-90" />
