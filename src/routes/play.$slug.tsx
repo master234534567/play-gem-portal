@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { GameTile } from "@/components/GameTile";
 import { IframeSkeleton } from "@/components/GameSkeleton";
 import { AdSlot } from "@/components/AdSlot";
+import { ComingSoonOverlay } from "@/components/ComingSoonOverlay";
 import { GAMES, getGameBySlug, getRandomGame, getRelatedGames } from "@/lib/games";
 
 export const Route = createFileRoute("/play/$slug")({
@@ -107,27 +108,42 @@ function PlayPage() {
               ref={playerRef}
               className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black ring-1 ring-border shadow-tile-hover"
             >
-              {loading && (
-                <div className="absolute inset-0 z-10">
-                  <IframeSkeleton />
-                </div>
+              {game.comingSoon ? (
+                <>
+                  <ComingSoonOverlay game={game} />
+                  <button
+                    onClick={toggleFullscreen}
+                    className="absolute bottom-3 right-3 z-40 inline-flex items-center gap-1.5 rounded-full bg-background/70 backdrop-blur px-3 py-1.5 text-xs font-semibold ring-1 ring-border hover:bg-background transition"
+                  >
+                    {isFullscreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+                    {isFullscreen ? "Exit" : "Fullscreen"}
+                  </button>
+                </>
+              ) : (
+                <>
+                  {loading && (
+                    <div className="absolute inset-0 z-10">
+                      <IframeSkeleton />
+                    </div>
+                  )}
+                  <iframe
+                    key={game.id}
+                    src={game.iframe_url}
+                    title={game.title}
+                    onLoad={() => setLoading(false)}
+                    allow="autoplay; fullscreen; gamepad; cross-origin-isolated"
+                    allowFullScreen
+                    className="h-full w-full border-0"
+                  />
+                  <button
+                    onClick={toggleFullscreen}
+                    className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-background/70 backdrop-blur px-3 py-1.5 text-xs font-semibold ring-1 ring-border hover:bg-background transition"
+                  >
+                    {isFullscreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
+                    {isFullscreen ? "Exit" : "Fullscreen"}
+                  </button>
+                </>
               )}
-              <iframe
-                key={game.id}
-                src={game.iframe_url}
-                title={game.title}
-                onLoad={() => setLoading(false)}
-                allow="autoplay; fullscreen; gamepad; cross-origin-isolated"
-                allowFullScreen
-                className="h-full w-full border-0"
-              />
-              <button
-                onClick={toggleFullscreen}
-                className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-background/70 backdrop-blur px-3 py-1.5 text-xs font-semibold ring-1 ring-border hover:bg-background transition"
-              >
-                {isFullscreen ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
-                {isFullscreen ? "Exit" : "Fullscreen"}
-              </button>
             </div>
 
             {/* Title + description */}
