@@ -7,7 +7,7 @@ type Props = {
   id?: string;
   title: string;
   games: Game[];
-  accent?: string;
+  accent?: boolean;
 };
 
 export function GameRow({ id, title, games, accent }: Props) {
