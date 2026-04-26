@@ -48,6 +48,11 @@ export function GameTile({ game, index = 0 }: Props) {
                 <Sparkles className="h-2.5 w-2.5" /> Sponsored
               </div>
             )}
+            {game.comingSoon && (
+              <div className="inline-flex items-center gap-1 rounded-full bg-accent/85 backdrop-blur px-2 py-0.5 text-[10px] font-bold text-accent-foreground ring-1 ring-accent/40">
+                <Clock className="h-2.5 w-2.5" /> Soon
+              </div>
+            )}
           </div>
           <div className="absolute top-2 right-2 flex items-center gap-1 rounded-full bg-background/70 backdrop-blur px-2 py-0.5 text-[10px] font-semibold text-accent ring-1 ring-border">
             <Star className="h-3 w-3 fill-current" /> {game.rating}
